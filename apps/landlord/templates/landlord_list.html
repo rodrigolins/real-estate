@@ -1,0 +1,58 @@
+{% extends "landlord_base.html" %}
+
+{% block title %}Landlord List{% endblock %}
+
+{% block content %}
+<a href={% url "landlord:create" %}>Create new Landlord!</a>
+{% if messages %}
+    {% for message in messages %}
+        <div id="message_{{ forloop.counter }}" class="alert
+            {% if message.tags == 'info' %}
+                alert-info
+            {% else %}
+                something-wrong
+            {% endif %}" role="alert">
+            <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if object_list %}
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>street</th>
+            <th>number</th>
+            <th>neighborhood</th>
+            <th>state</th>
+            <th>city</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for landlord in object_list %}
+        <tr>
+            <th scope="row">{{ landlord.id }}</th>
+            <td>{{ landlord.name }}</td>
+            <td>{{ landlord.street }}</td>
+            <td>{{ landlord.number }}</td>
+            <td>{{ landlord.neighborhood }}</td>
+            <td>{{ landlord.state }}</td>
+            <td>{{ landlord.city }}</td>
+            <td><a class="btn btn-primary" href={% url "landlord:detail" landlord.id %}>Details</a></td>
+            <td><a class="btn btn-primary" href={% url "landlord:update" landlord.id %}>Edit</a> </td>
+            <td><a class="btn btn-danger" href={% url "landlord:delete" landlord.id %}>Delete</a> </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% else %}
+    <p>No landlords to be listed</p>
+{% endif %}
+
+{% endblock %}
