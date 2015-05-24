@@ -26,13 +26,12 @@ PROJECT_ROOT = os.path.abspath(
 SECRET_KEY = 'hsb-q@g0%xlau!+ea*_^tj-d#$4$cy6+780t6%(^t)31k)ppk&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,8 +40,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'djangobower',
+
     'apps.core',
     'apps.landlord',
+    'apps.property',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,10 +60,16 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'realstate.urls'
 
+WSGI_APPLICATION = 'realstate.wsgi.application'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+                    os.path.join(PROJECT_ROOT, 'templates'),
+                    os.path.join(PROJECT_ROOT, 'apps/core/templates'),
+                    os.path.join(PROJECT_ROOT, 'apps/landlord/templates'),
+                ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,15 +81,6 @@ TEMPLATES = [
         },
     },
 ]
-
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'templates'),
-    os.path.join(PROJECT_ROOT, 'apps/core/templates'),
-    os.path.join(PROJECT_ROOT, 'apps/landlord/templates'),
-)
-
-WSGI_APPLICATION = 'realstate.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -107,8 +106,24 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 STATIC_URL = '/static/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
+
+BOWER_PATH = '/usr/local/bin/bower'
+
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'underscore',
+    'bootstrap',
+)
