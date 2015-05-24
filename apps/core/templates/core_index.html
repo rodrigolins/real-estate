@@ -1,0 +1,9 @@
+{% extends "core_base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+<ul>
+    <li><a href={% url "landlord:list" %}>List landlords!</a></li>
+</ul>
+{% endblock %}
