@@ -1,0 +1,12 @@
+{% extends "property_base.html" %}
+
+{% block title %}Create new property{% endblock %}
+
+{% block content %}
+<form class="horizontal-form" action="{% url "property:create" %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create</button>
+
+</form>
+{% endblock %}

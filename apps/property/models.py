@@ -4,8 +4,12 @@ from django.forms import ModelForm
 from apps.core.utils import STATES
 from decimal import Decimal
 
+from apps.landlord.models import Landlord
+
 
 # Create your models here.
+# if a property is deleted we should remove it because the payment slips
+# and accountancy.
 class Property(models.Model):
     code = models.CharField(max_length=12)
     address = models.CharField(max_length=255)
@@ -17,6 +21,10 @@ class Property(models.Model):
     status = models.CharField(max_length=2)
     rent = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('0.00'))
     note = models.TextField()
+    landlord = models.ForeignKey(Landlord)
+
+    def __str__(self):
+        return("%s %s" % (self.address, self.number))
 
 
 class PropertyForm(ModelForm):

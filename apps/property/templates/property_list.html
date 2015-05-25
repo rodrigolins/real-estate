@@ -1,0 +1,65 @@
+{% extends "property_base.html" %}
+
+{% block title %}Property List{% endblock %}
+
+{% block content %}
+<a href={% url "property:create" %}>Create new property!</a>
+{% if messages %}
+    {% for message in messages %}
+        <div id="message_{{ forloop.counter }}" class="alert
+            {% if message.tags == 'info' %}
+                alert-info
+            {% else %}
+                something-wrong
+            {% endif %}" role="alert">
+            <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if object_list %}
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>code</th>
+            <th>address</th>
+            <th>number</th>
+            <th>zip_code</th>
+            <th>state</th>
+            <th>city</th>
+            <th>state</th>
+            <th>status</th>
+            <th>rent</th>
+            <th>note</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for property in object_list %}
+        <tr>
+            <th scope="row">{{ property.id }}</th>
+            <td>{{ property.code }}</td>
+            <td>{{ property.address }}</td>
+            <td>{{ property.number }}</td>
+            <td>{{ property.zip_code }}</td>
+            <td>{{ property.neighborhood }}</td>
+            <td>{{ property.city }}</td>
+            <td>{{ property.state }}</td>
+            <td>{{ property.status }}</td>
+            <td>{{ property.rent }}</td>
+            <td>{{ property.note }}</td>
+            <td><a class="btn btn-primary" href={% url "property:detail" property.id %}>Details</a></td>
+            <td><a class="btn btn-primary" href={% url "property:update" property.id %}>Edit</a> </td>
+            <td><a class="btn btn-danger" href={% url "property:delete" property.id %}>Delete</a> </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% else %}
+    <p>No properties to be listed</p>
+{% endif %}
+
+{% endblock %}

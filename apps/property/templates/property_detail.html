@@ -1,0 +1,81 @@
+{% extends "property_base.html" %}
+
+{% block title %}Property Detail{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li id="message_{{ forloop.counter }}"
+                    {% if message.tags %} class="{{ message.tags }}">
+                    {% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Property details</h3>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-right"><label for="id_id">ID:</label></td>
+                    <td class="text-left">{{ property.id }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_code">code:</label></td>
+                    <td class="text-left">{{ property.code }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_address">address:</label></td>
+                    <td class="text-left">{{ property.address }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_number">number:</label></td>
+                    <td class="text-left">{{ property.number }}</td>
+                </tr>
+
+                <tr>
+                    <td class="text-right"><label for="id_zip_code">zip_code:</label></td>
+                    <td class="text-left">{{ property.zip_code }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_neighborhood">neighborhood:</label></td>
+                    <td class="text-left">{{ property.neighborhood }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_city">city:</label></td>
+                    <td class="text-left">{{ property.city }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_state">state:</label></td>
+                    <td class="text-left">{{ property.state }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_status">status:</label></td>
+                    <td class="text-left">{{ property.status }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_rent">rent:</label></td>
+                    <td class="text-left">{{ property.rent }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><label for="id_note">note:</label></td>
+                    <td class="text-left">{{ property.note }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-right">
+        <a class="btn btn-primary" href="{% url "property:list" %}">List all property</a>
+    </div>
+
+{% endblock %}
