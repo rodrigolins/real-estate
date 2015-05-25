@@ -12,7 +12,12 @@ class Landlord(models.Model):
     neighborhood = models.CharField(max_length=80, help_text='Neighborhood')
     state = models.CharField(max_length=2, help_text='State', choices=STATES)
     city = models.CharField(max_length=40, help_text='City')
-    note = models.TextField()
+    phone = models.CharField(max_length=12)
+    email = models.EmailField(null=True)
+    note = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return("%s" % (self.name))
 
 
 class LandlordForm(ModelForm):

@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('apps.core.urls', namespace='core')),
     url(r'^landlord/', include('apps.landlord.urls', namespace='landlord')),
+    url(r'^property/', include('apps.property.urls', namespace='property')),
 ]
 
 if settings.DEBUG:

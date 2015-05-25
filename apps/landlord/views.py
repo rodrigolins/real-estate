@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 # from django.utils.translation import ugettext_lazy as _
 
 from .models import Landlord
-# Create your views here.
 
 
 class LandlordDetailView(DetailView):
