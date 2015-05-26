@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'apps.core',
     'apps.landlord',
     'apps.property',
+    'apps.tenant',
+    'apps.contract',
 )
 
 MIDDLEWARE_CLASSES = (
