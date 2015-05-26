@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^', include('apps.core.urls', namespace='core')),
     url(r'^landlord/', include('apps.landlord.urls', namespace='landlord')),
     url(r'^property/', include('apps.property.urls', namespace='property')),
+    url(r'^tenant/', include('apps.tenant.urls', namespace='tenant')),
+    url(r'^contract/', include('apps.contract.urls', namespace='contract')),
 ]
 
 if settings.DEBUG:
