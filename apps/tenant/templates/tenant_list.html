@@ -1,0 +1,53 @@
+{% extends "tenant_base.html" %}
+
+{% block title %}tenant List{% endblock %}
+
+{% block content %}
+<a href={% url "tenant:create" %}>Create new tenant!</a>
+{% if messages %}
+    {% for message in messages %}
+        <div id="message_{{ forloop.counter }}" class="alert
+            {% if message.tags == 'info' %}
+                alert-info
+            {% else %}
+                something-wrong
+            {% endif %}" role="alert">
+            <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if object_list %}
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>phone</th>
+            <th>email</th>
+            <th>note</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tenant in object_list %}
+        <tr>
+            <th scope="row">{{ tenant.id }}</th>
+            <td>{{ tenant.name }}</td>
+            <td>{{ tenant.phone }}</td>
+            <td>{{ tenant.email }}</td>
+            <td>{{ tenant.note }}</td>
+            <td><a class="btn btn-primary" href={% url "tenant:detail" tenant.id %}>Details</a></td>
+            <td><a class="btn btn-primary" href={% url "tenant:update" tenant.id %}>Edit</a> </td>
+            <td><a class="btn btn-danger" href={% url "tenant:delete" tenant.id %}>Delete</a> </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% else %}
+    <p>No tenants to be listed</p>
+{% endif %}
+
+{% endblock %}
