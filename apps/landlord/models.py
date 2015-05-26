@@ -4,7 +4,6 @@ from django.forms import ModelForm
 from apps.core.utils import STATES
 
 
-# Create your models here.
 class Landlord(models.Model):
     name = models.CharField(max_length=255, help_text='Name')
     street = models.CharField(max_length=255, help_text='Street')

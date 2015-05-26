@@ -20,8 +20,10 @@ class Property(models.Model):
     state = models.CharField(max_length=2, choices=STATES)
     status = models.CharField(max_length=2)
     rent = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('0.00'))
-    note = models.TextField()
+    note = models.TextField(null=True, blank=True)
     landlord = models.ForeignKey(Landlord)
+    rooms = models.IntegerField(null=True, blank=True)
+    size = models.DecimalField(null=True, blank=True, max_digits=6, decimal_places=2, default=Decimal('0.00'))
 
     def __str__(self):
         return("%s %s" % (self.address, self.number))
