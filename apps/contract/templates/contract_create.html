@@ -1,0 +1,12 @@
+{% extends "contract_base.html" %}
+
+{% block title %}Create new contract{% endblock %}
+
+{% block content %}
+<form class="horizontal-form" action="{% url "contract:create" %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create</button>
+
+</form>
+{% endblock %}

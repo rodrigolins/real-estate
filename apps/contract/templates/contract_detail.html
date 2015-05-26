@@ -1,0 +1,35 @@
+{% extends "contract_base.html" %}
+
+{% block title %}Contract Detail{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li id="message_{{ forloop.counter }}"
+                    {% if message.tags %} class="{{ message.tags }}">
+                    {% endif %}>
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Contract details</h3>
+        </div>
+    </div>
+    <div class="container">
+        <p>ID: {{ contract.id }}</p>
+        <p>property: {{ contract.property }}</p>
+        <p>tenant: {{ contract.tenant }}</p>
+        <p>duration: {{ contract.duration }}</p>
+        <p>start_date: {{ contract.start_date }}</p>
+        <p>finished_date: {{ contract.finished_date }}</p>
+        <p>status: {{ contract.status }}</p>
+    </div>
+    <div class="text-right">
+        <a class="btn btn-primary" href="{% url "contract:list" %}">List all contracts</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "contract_base.html" %}
+
+{% block title %}contract List{% endblock %}
+
+{% block content %}
+<a href={% url "contract:create" %}>Create new contract!</a>
+{% if messages %}
+    {% for message in messages %}
+        <div id="message_{{ forloop.counter }}" class="alert
+            {% if message.tags == 'info' %}
+                alert-info
+            {% else %}
+                something-wrong
+            {% endif %}" role="alert">
+            <strong>{{ message }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if object_list %}
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>property</th>
+            <th>tenant</th>
+            <th>duration</th>
+            <th>start_date</th>
+            <th>finished_date</th>
+            <th>status</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contract in object_list %}
+        <tr>
+            <th scope="row">{{ contract.id }}</th>
+            <td>{{ contract.property }}</td>
+            <td>{{ contract.tenant }}</td>
+            <td>{{ contract.duration }}</td>
+            <td>{{ contract.start_date }}</td>
+            <td>{{ contract.finished_date }}</td>
+            <td>{{ contract.status }}</td>
+            <td><a class="btn btn-primary" href={% url "contract:detail" contract.id %}>Details</a></td>
+            <td><a class="btn btn-primary" href={% url "contract:update" contract.id %}>Edit</a> </td>
+            <td><a class="btn btn-danger" href={% url "contract:delete" contract.id %}>Delete</a> </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% else %}
+    <p>No contracts to be listed</p>
+{% endif %}
+
+{% endblock %}
