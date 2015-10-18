@@ -27,7 +27,6 @@ SECRET_KEY = 'hsb-q@g0%xlau!+ea*_^tj-d#$4$cy6+780t6%(^t)31k)ppk&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -80,6 +79,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG,
         },
     },
 ]
@@ -100,7 +100,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
