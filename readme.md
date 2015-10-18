@@ -1,6 +1,8 @@
 # RealState project
 
-Esse Projeto tem o intuito de gerenciar locadores e locatarios.
-Um pequeno gerenciador de imoveis.
+Esse Projeto tem o intuito de gerenciar imóveis (locadores e locatarios).
 
+## Instalação
+
+## Dependências
 
